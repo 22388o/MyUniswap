@@ -103,6 +103,36 @@
     </div>
     <div style="margin-top: 20px; font-size: 14px; text-align: center;">
       <p><em>Disclaimer: Alpha software - Use at own risk</em></p>
+      
+    <script>
+      // Check if Metamask is installed
+      if (typeof window.ethereum !== 'undefined') {
+        const connectWalletButton = document.getElementById('connect-wallet-button');
+
+        // Handle wallet connection
+        const connectWallet = async () => {
+          try {
+            // Request user permission to connect to Metamask
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+            // Wallet connected successfully
+            alert('Wallet connected!');
+          } catch (error) {
+            // Error occurred or user denied permission
+            console.error(error);
+            alert('Failed to connect wallet. Please try again.');
+          }
+        };
+
+        // Attach event listener to connect wallet button
+        connectWalletButton.addEventListener('click', connectWallet);
+      } else {
+        // Metamask is not installed or not detected
+        alert('Metamask not found. Please install Metamask to connect your wallet.');
+      }
+    </script>
+  </body>
+</html>
     </div>
   </body>
 </html>
